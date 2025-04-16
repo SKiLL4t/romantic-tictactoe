@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💝 Все ради АЛЕНОЧКИ 💝</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <!-- Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <!-- Добавляем звуки -->
+    <audio id="moveSound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"></audio>
+    <audio id="winSound" src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3" preload="auto"></audio>
+</head>
+<body>
+    <div class="container">
+        <h1>💝 Все ради АЛЕНОЧКИ 💝</h1>
+        
+        <!-- Меню входа -->
+        <div class="login-menu" id="loginMenu">
+            <div class="input-group">
+                <input type="text" id="playerName" placeholder="Введите ваше имя" maxlength="20">
+                <button id="saveNameBtn">Сохранить имя</button>
+            </div>
+        </div>
+
+        <!-- Главное меню -->
+        <div class="main-menu" id="mainMenu" style="display: none;">
+            <div class="player-info">
+                <h2 id="welcomeMessage">Добро пожаловать!</h2>
+                <div class="score-board">
+                    <p>Победы: <span id="wins">0</span></p>
+                    <p>Поражения: <span id="losses">0</span></p>
+                </div>
+            </div>
+            
+            <div class="game-buttons">
+                <button id="createGame" class="main-button">Создать новую игру</button>
+                <div class="join-game-container">
+                    <input type="text" id="gameCode" placeholder="Код игры (4 цифры)" maxlength="4" pattern="[0-9]*" inputmode="numeric">
+                    <button id="joinGame">Присоединиться</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Игровое поле -->
+        <div class="game-container" id="gameContainer" style="display: none;">
+            <div class="game-header">
+                <div class="player-score" id="player1Score">
+                    <span class="player-name" id="player1Name">Игрок 1</span>
+                    <span class="score">0</span>
+                </div>
+                <div class="vs">VS</div>
+                <div class="player-score" id="player2Score">
+                    <span class="player-name" id="player2Name">Игрок 2</span>
+                    <span class="score">0</span>
+                </div>
+            </div>
+
+            <div class="status" id="status">Ожидаем второго игрока...</div>
+            
+            <!-- Индикатор подключения -->
+            <div class="connection-status" id="connectionStatus">
+                <span class="connection-dot"></span>
+                <span class="connection-text">Подключено</span>
+            </div>
+
+            <div class="game-board" id="board">
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+                <div class="cell" data-cell></div>
+            </div>
+            
+            <div class="game-controls">
+                <button id="restartButton">Начать заново</button>
+                <button id="leaveGame">Выйти из игры</button>
+            </div>
+
+            <div class="game-info">
+                <p class="current-code" id="currentGameCode"></p>
+                <p class="message">С любовью для Аленочки 💖</p>
+            </div>
+
+            <!-- Чат -->
+            <div class="chat-container" id="chatContainer">
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Напишите сообщение...">
+                    <button id="sendMessage">💌</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
